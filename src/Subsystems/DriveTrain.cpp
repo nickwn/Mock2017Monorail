@@ -19,7 +19,7 @@ double DriveTrain::leftUltra() {
 	double distances[10];
 	double distance;
 	for (int i = 0; i < distanceCount; i++) {
-		distances[i] = leftUltrasonic->GetRangeInches;
+		distances[i] = leftUltrasonic->GetRangeInches();
 	}
 	distance = 0;
 	for (int i = 0; i < distanceCount; i++) {
@@ -33,7 +33,7 @@ double DriveTrain::rightUltra() {
 	double distances[10];
 	double distance;
 	for (int i = 0; i < distanceCount; i++) {
-	distances[i] = rightUltrasonic->GetRangeInches;
+	distances[i] = rightUltrasonic->GetRangeInches();
 	}
 	distance = 0;
 	for (int i = 0; i < distanceCount; i++) {
