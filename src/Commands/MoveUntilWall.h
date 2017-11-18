@@ -6,9 +6,8 @@
 class MoveUntilWall : public CommandBase {
 private:
 	int distanceToTravel;
-	double distances[10];
-	int distanceCount;
-	double distance;
+	double leftDistance;
+	double rightDistance;
 	double leftEncoder;
 	double rightEncoder;
 public:

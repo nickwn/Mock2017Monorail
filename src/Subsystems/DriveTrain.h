@@ -12,11 +12,13 @@ private:
 	// for methods that implement subsystem capabilities
 	CANTalon* leftMotor;
 	CANTalon* rightMotor;
-	Ultrasonic* ultrasonicSensor;
+	Ultrasonic* leftUltrasonic;
+	Ultrasonic* rightUltrasonic;
 public:
 	DriveTrain();
 	void InitDefaultCommand();
-	double getUltra();
+	double leftUltra();
+	double rightUltra();
 	void tankDrive(double left, double right);
 	void Stop();
 	double leftEncoder();

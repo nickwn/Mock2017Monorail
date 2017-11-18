@@ -16,6 +16,8 @@ void TankDrive::Execute() {
 	double leftVal = -oi->getLeft()->GetY();
 	double rightVal = -oi->getRight()->GetY();
 	driveTrain->tankDrive(leftVal, rightVal);
+	std::cout << "Left:" << driveTrain->leftEncoder();
+	std::cout << "Right:" << driveTrain->rightEncoder();
 }
 
 // Make this return true when this Command no longer needs to run execute()

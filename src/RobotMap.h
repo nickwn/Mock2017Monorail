@@ -21,9 +21,11 @@
 const int LEFTMOTOR = 2;
 const int RIGHTMOTOR = 3;
 
-const int MULTIPLIER = 3;
+const int MULTIPLIER = 1;
 
-const int ULTRASONIC_TRIGGER = 0;
-const int ULTRASONIC_ECHO = 1;
+const int LEFT_ULTRA_TRIGGER = 0;
+const int LEFT_ULTRA_ECHO = 1;
+const int RIGHT_ULTRA_TRIGGER = 2;
+const int RIGHT_ULTRA_ECHO = 3;
 
 #endif  // ROBOTMAP_H
