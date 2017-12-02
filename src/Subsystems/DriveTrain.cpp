@@ -24,6 +24,7 @@ double DriveTrain::leftUltra() {
 	distance = 0;
 	for (int i = 0; i < distanceCount; i++) {
 		distance += distances[i];
+		distance /= 10;
 	}
 	return distance;
 }
@@ -38,6 +39,7 @@ double DriveTrain::rightUltra() {
 	distance = 0;
 	for (int i = 0; i < distanceCount; i++) {
 		distance += distances[i];
+		distance /= 10;
 	}
 	return distance;
 }
@@ -59,5 +61,19 @@ double DriveTrain::rightEncoder() {
 	return rightMotor->GetEncPosition();
 }
 
+void DriveTrain::EnablePID() {
+	leftMotor->Enable();
+	rightMotor->Enable();
+}
+
+void DriveTrain::setPID(double p, double i, double d) {
+	leftMotor->SetPID(p, i, d);
+	rightMotor->SetPID(p, i, d);
+}
+
+void DriveTrain::setSetpoint(double setpoint) {
+	leftMotor->SetSetpoint(setpoint);
+	rightMotor->SetSetpoint(setpoint);
+}
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

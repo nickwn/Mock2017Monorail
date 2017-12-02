@@ -23,6 +23,9 @@ public:
 	void Stop();
 	double leftEncoder();
 	double rightEncoder();
+	void EnablePID();
+	void setPID(double p, double i, double d);
+	void setSetpoint(double setpoint);
 };
 
 #endif  // DriveTrain_H
