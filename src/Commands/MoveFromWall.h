@@ -1,9 +1,9 @@
-#ifndef MoveUntilWall_H
-#define MoveUntilWall_H
+#ifndef MoveFromWall_H
+#define MoveFromWall_H
 
 #include "../CommandBase.h"
 
-class MoveUntilWall : public CommandBase {
+class MoveFromWall : public CommandBase {
 private:
 	double targetDistance;
 	double leftDistance;
@@ -11,7 +11,7 @@ private:
 	double leftEncoder;
 	double rightEncoder;
 public:
-	MoveUntilWall(double _distance);
+	MoveFromWall(double _distance);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -19,4 +19,4 @@ public:
 	void Interrupted();
 };
 
-#endif  // MoveUntilWall_H
+#endif  // MoveFromWall_H
