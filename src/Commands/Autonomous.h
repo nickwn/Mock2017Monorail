@@ -6,12 +6,11 @@
 #include "WPILib.h"
 
 #include "MoveUntilWall.h"
-
+#include "Drive.h"
+#include "AlignWithWall.h"
+#include "MoveFromWall.h"
 
 class Autonomous : public CommandGroup {
-private:
-	std::string sZone = NetworkTable::GetTable("cv")->GetString("sZone", "a");
-	std::string vZone = NetworkTable::GetTable("cv")->GetString("vZone", "a");
 public:
 	Autonomous();
 };
