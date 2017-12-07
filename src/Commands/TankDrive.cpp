@@ -8,7 +8,7 @@ TankDrive::TankDrive() {
 
 // Called just before this Command runs the first time
 void TankDrive::Initialize() {
-
+	driveTrain->GyroReset();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -20,6 +20,8 @@ void TankDrive::Execute() {
 	std::cout << "RightUltrasonic: " << driveTrain->rightUltra() << std::endl;
 	std::cout << "LeftEncoder: " << driveTrain->leftEncoder() << std::endl;
 	std::cout << "RightEncoder: " << driveTrain->rightEncoder() << std::endl;
+	std::cout << "GyroAngle: " << driveTrain->GyroAngle() << std::endl;
+	std::cout << "GyroRate: " << driveTrain->GyroRate() << std::endl;
 }
 
 // Make this return true when this Command no longer needs to run execute()
