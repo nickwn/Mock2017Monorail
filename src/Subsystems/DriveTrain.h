@@ -14,8 +14,10 @@ private:
 	CANTalon* rightMotor;
 	Ultrasonic* leftUltrasonic;
 	Ultrasonic* rightUltrasonic;
+	ADXRS450_Gyro* gyro;
 public:
 	DriveTrain();
+	~DriveTrain();
 	void InitDefaultCommand();
 	double leftUltra();
 	double rightUltra();
@@ -24,8 +26,13 @@ public:
 	double leftEncoder();
 	double rightEncoder();
 	void EnablePID();
+	void DisablePID();
 	void setPID(double p, double i, double d);
 	void setSetpoint(double setpoint);
+	double GyroAngle();
+	double GyroRate();
+	void GyroReset();
+	void GyroCalibrate();
 };
 
 #endif  // DriveTrain_H

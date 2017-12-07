@@ -4,8 +4,11 @@
 
 DriveTrain::DriveTrain() : Subsystem("DriveTrain"), leftMotor(new CANTalon(LEFTMOTOR)), rightMotor(new CANTalon(RIGHTMOTOR)),
 							leftUltrasonic(new Ultrasonic(LEFT_ULTRA_TRIGGER, LEFT_ULTRA_ECHO)),
-							rightUltrasonic(new Ultrasonic(RIGHT_ULTRA_TRIGGER, RIGHT_ULTRA_ECHO)){
+							rightUltrasonic(new Ultrasonic(RIGHT_ULTRA_TRIGGER, RIGHT_ULTRA_ECHO)),
+							gyro(new ADXRS450_Gyro()){
 	leftUltrasonic->SetAutomaticMode(true);
+	leftMotor->SetInverted(true); //mounted backwards
+	gyro->Calibrate();
 }
 
 void DriveTrain::InitDefaultCommand() {
@@ -49,11 +52,12 @@ void DriveTrain::tankDrive(double left, double right) {
 }
 
 void DriveTrain::Stop() {
-	leftMotor->Set(0);
-	rightMotor->Set(0);
+	leftMotor->StopMotor();
+	rightMotor->StopMotor();
 }
 
 double DriveTrain::leftEncoder() {
+	std::cout << leftMotor->GetPosition() << std::endl << leftMotor->GetPulseWidthPosition() << std::endl << leftMotor->GetAnalogIn() << std::endl;
 	return leftMotor->GetEncPosition();
 }
 
@@ -66,6 +70,11 @@ void DriveTrain::EnablePID() {
 	rightMotor->Enable();
 }
 
+void DriveTrain::DisablePID() {
+	leftMotor->Disable();
+	rightMotor->Disable();
+}
+
 void DriveTrain::setPID(double p, double i, double d) {
 	leftMotor->SetPID(p, i, d);
 	rightMotor->SetPID(p, i, d);
@@ -74,6 +83,30 @@ void DriveTrain::setPID(double p, double i, double d) {
 void DriveTrain::setSetpoint(double setpoint) {
 	leftMotor->SetSetpoint(setpoint);
 	rightMotor->SetSetpoint(setpoint);
+}
+
+double DriveTrain::GyroAngle() {
+	return gyro->GetAngle() % 360;
+}
+
+double DriveTrain::GyroRate() {
+	return gyro->GetRate();
+}
+
+void DriveTrain::GyroReset() {
+	gyro->Reset();
+}
+
+void DriveTrain::GyroCalibrate() {
+	gyro->Calibrate();
+}
+
+DriveTrain::~DriveTrain() {
+	delete leftMotor;
+	delete rightMotor;
+	delete leftUltrasonic;
+	delete rightUltrasonic;
+	delete gyro;
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
