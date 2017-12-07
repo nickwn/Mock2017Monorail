@@ -10,7 +10,11 @@
 #include "AlignWithWall.h"
 #include "MoveFromWall.h"
 
+#include "Utilities/NetworkTablesInterface.h"
+
 class Autonomous : public CommandGroup {
+private:
+	std::string HZone;
 public:
 	Autonomous();
 };
