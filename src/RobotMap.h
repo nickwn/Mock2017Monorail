@@ -18,8 +18,9 @@
 // constexpr int RANGE_FINDER_PORT = 1;
 // constexpr int RANGE_FINDER_MODULE = 1;
 
-const int LEFTMOTOR = 2;
-const int RIGHTMOTOR = 3;
+const int LEFTMOTOR = 0;
+const int RIGHTMOTOR = 1;
+const int ARMMOTOR = 2;
 
 const int MULTIPLIER = 1;
 

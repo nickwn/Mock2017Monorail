@@ -20,6 +20,7 @@ Autonomous::Autonomous() {
 	AddSequential(new MoveUntilWall(12)); //change target distance
 	AddSequential(new Drive(-0.5, 0.5, 1)); //turn to face left wall
 	AddSequential(new AlignWithWall());
+	/*
 	if (orientation != "v") {
 		AddSequential(new MoveFromWall(42)); //3'6" zone
 		if (orientation != "v") {
@@ -34,6 +35,7 @@ Autonomous::Autonomous() {
 		//turn
 		//hit target
 	}
+	*/
 	//return to zone A
 	//turn back
 	/*
