@@ -6,6 +6,7 @@
 
 #include <Commands/Command.h>
 #include "Subsystems/DriveTrain.h"
+#include "Subsystems/Arm.h"
 
 #include "OI.h"
 
@@ -23,6 +24,7 @@ public:
 	// Create a single static instance of all of your subsystems
 	static std::unique_ptr<OI> oi;
 	static DriveTrain* driveTrain;
+	static Arm* arm;
 
 	static void initialize();
 };
