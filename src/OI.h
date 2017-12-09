@@ -6,10 +6,12 @@ class OI {
 private:
 	Joystick* leftStick;
 	Joystick* rightStick;
+	Joystick* ArmStick;
 public:
 	OI();
 	Joystick* getLeft();
 	Joystick* getRight();
+	Joystick* gitArm();
 };
 
 #endif  // OI_H

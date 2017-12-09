@@ -1,33 +1,32 @@
-#include "MoveArm.h"
+#include "ArmDown.h"
 
-MoveArm::MoveArm() {
+ArmDown::ArmDown() {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
-	Requires(arm);
 }
 
 // Called just before this Command runs the first time
-void MoveArm::Initialize() {
+void ArmDown::Initialize() {
 
 }
 
 // Called repeatedly when this Command is scheduled to run
-void MoveArm::Execute() {
-	double armVal = -oi->getLeft()->GetY();
+void ArmDown::Execute() {
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool MoveArm::IsFinished() {
+bool ArmDown::IsFinished() {
 	return false;
 }
 
 // Called once after isFinished returns true
-void MoveArm::End() {
+void ArmDown::End() {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void MoveArm::Interrupted() {
+void ArmDown::Interrupted() {
 
 }

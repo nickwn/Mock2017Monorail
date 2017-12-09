@@ -6,14 +6,14 @@
 #include "WPILib.h"
 #include "ctrlib/CANTalon.h"
 
-class moveArm : public Subsystem {
+class Arm : public Subsystem {
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 	CANTalon* armMotor;
 
 public:
-	moveArm();
+	Arm();
 	void InitDefaultCommand();
 	void armD(double armDistance);
 	void End();

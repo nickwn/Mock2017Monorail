@@ -3,11 +3,11 @@
 #include "Commands/MoveArm.h"
 #include "OI.h"
 
-moveArm::moveArm() : Subsystem("Arm"), armMotor(new CANTalon(ARMMOTOR)) {
+Arm::Arm() : Subsystem("Arm"), armMotor(new CANTalon(ARMMOTOR)) {
 
 }
 
-void moveArm::InitDefaultCommand() {
+void Arm::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
 	SetDefaultCommand(new MoveArm());
@@ -16,12 +16,12 @@ void moveArm::InitDefaultCommand() {
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
-void moveArm::armD(double armDistance)
+void Arm::armD(double armDistance)
 {
 	armMotor->Set(armDistance);
 }
 
-void moveArm::End()
+void Arm::End()
 {
 	armMotor->Set(0);
 }
