@@ -20,9 +20,12 @@
 
 const int LEFTMOTOR = 0;
 const int RIGHTMOTOR = 1;
+<<<<<<< HEAD
 const int ARMMOTOR = 2;
+=======
+>>>>>>> 519c26f6f774607e08e3c5b87fd1f8dc16898650
 
-const int MULTIPLIER = 1;
+const double MULTIPLIER = 0.5;
 
 const int LEFT_ULTRA_TRIGGER = 0;
 const int LEFT_ULTRA_ECHO = 1;
