@@ -18,11 +18,16 @@ Autonomous::Autonomous() {
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 	AddSequential(new MoveUntilWall(12)); //change target distance
-	AddSequential(new Drive(-0.5, 0.5, 1)); //turn to face left wall
-	AddSequential(new AlignWithWall());
-	if (orientation != "v") {
+	//AddSequential(new Drive(-0.5, 0.5, 1)); //turn to face left wall
+	//AddSequential(new AlignWithWall());
+	if (NetworkTablesInterface::Orientation() != "V") {
+		if (NetworkTablesInterface::Orientation() == "H") {
+			HZone = "A";
+		}
+		AddSequential(new Drive(-0.5, 0.5, 1));
+		AddSequential(new AlignWithWall());
 		AddSequential(new MoveFromWall(42)); //3'6" zone
-		if (orientation != "v") {
+		if (NetworkTablesInterface::Orientation() != "V") {
 			AddSequential(new MoveFromWall(84));
 			//turn
 			//hit target
