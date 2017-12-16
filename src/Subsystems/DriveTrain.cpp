@@ -2,11 +2,18 @@
 #include "../RobotMap.h"
 #include "Commands/TankDrive.h"
 
+#include <math.h>
+
+#define max(x, y) (((x) > (y)) ? (x) : (y))
+
 DriveTrain::DriveTrain() : Subsystem("DriveTrain"), leftMotor(new CANTalon(LEFTMOTOR)), rightMotor(new CANTalon(RIGHTMOTOR)),
 							leftUltrasonic(new Ultrasonic(LEFT_ULTRA_TRIGGER, LEFT_ULTRA_ECHO)),
 							rightUltrasonic(new Ultrasonic(RIGHT_ULTRA_TRIGGER, RIGHT_ULTRA_ECHO)),
 							gyro(new ADXRS450_Gyro()){
 	leftUltrasonic->SetAutomaticMode(true);
+	leftUltrasonic->SetEnabled(true);
+	rightUltrasonic->SetAutomaticMode(true);
+	rightUltrasonic->SetEnabled(true);
 	leftMotor->SetInverted(true); //mounted backwards
 	gyro->Calibrate();
 }
@@ -19,7 +26,7 @@ void DriveTrain::InitDefaultCommand() {
 
 double DriveTrain::leftUltra() {
 	int distanceCount = 10;
-	double distances[10];
+	double distances[distanceCount];
 	double distance;
 	for (int i = 0; i < distanceCount; i++) {
 		distances[i] = leftUltrasonic->GetRangeInches();
@@ -27,14 +34,14 @@ double DriveTrain::leftUltra() {
 	distance = 0;
 	for (int i = 0; i < distanceCount; i++) {
 		distance += distances[i];
-		distance /= 10;
+		distance /= distanceCount;
 	}
 	return distance;
 }
 
 double DriveTrain::rightUltra() {
 	int distanceCount = 10;
-	double distances[10];
+	double distances[distanceCount];
 	double distance;
 	for (int i = 0; i < distanceCount; i++) {
 	distances[i] = rightUltrasonic->GetRangeInches();
@@ -42,7 +49,7 @@ double DriveTrain::rightUltra() {
 	distance = 0;
 	for (int i = 0; i < distanceCount; i++) {
 		distance += distances[i];
-		distance /= 10;
+		distance /= distanceCount;
 	}
 	return distance;
 }
@@ -51,20 +58,48 @@ void DriveTrain::tankDrive(double left, double right) {
 	rightMotor->Set(right * MULTIPLIER);
 }
 
+void DriveTrain::arcadeDrive(double moveValue, double rotateValue) {
+	double leftMotorOutput;
+	double rightMotorOutput;
+
+	if (moveValue > 0.0) {
+			if (rotateValue > 0.0) {
+				leftMotorOutput = moveValue - rotateValue;
+				rightMotorOutput = max(moveValue, rotateValue);
+			} else {
+				leftMotorOutput = max(moveValue, -rotateValue);
+				rightMotorOutput = moveValue + rotateValue;
+			}
+		} else {
+			if (rotateValue > 0.0) {
+				leftMotorOutput = -max(-moveValue, rotateValue);
+				rightMotorOutput = moveValue + rotateValue;
+			} else {
+				leftMotorOutput = moveValue - rotateValue;
+				rightMotorOutput = -max(-moveValue, -rotateValue);
+			}
+		}
+
+	leftMotor->Set(leftMotorOutput);
+	rightMotor->Set(rightMotorOutput);
+}
 void DriveTrain::Stop() {
-	leftMotor->StopMotor();
-	rightMotor->StopMotor();
+	leftMotor->Set(0);
+	rightMotor->Set(0);
 }
 
 double DriveTrain::leftEncoder() {
-	std::cout << leftMotor->GetPosition() << std::endl << leftMotor->GetPulseWidthPosition() << std::endl << leftMotor->GetAnalogIn() << std::endl;
-	return leftMotor->GetEncPosition();
+	return leftMotor->GetPosition();
 }
 
 double DriveTrain::rightEncoder() {
-	return rightMotor->GetEncPosition();
+	return rightMotor->GetPosition();
 }
 
+void DriveTrain::EncoderReset() {
+	leftMotor->SetPosition(0);
+	rightMotor->SetPosition(0);
+}
 void DriveTrain::EnablePID() {
 	leftMotor->Enable();
 	rightMotor->Enable();
@@ -86,7 +121,7 @@ void DriveTrain::setSetpoint(double setpoint) {
 }
 
 double DriveTrain::GyroAngle() {
-	return gyro->GetAngle() % 360;
+	return gyro->GetAngle();
 }
 
 double DriveTrain::GyroRate() {

@@ -22,9 +22,11 @@ public:
 	double leftUltra();
 	double rightUltra();
 	void tankDrive(double left, double right);
+	void arcadeDrive(double move, double rotate);
 	void Stop();
 	double leftEncoder();
 	double rightEncoder();
+	void EncoderReset();
 	void EnablePID();
 	void DisablePID();
 	void setPID(double p, double i, double d);
