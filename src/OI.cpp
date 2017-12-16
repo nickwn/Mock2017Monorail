@@ -4,13 +4,10 @@
 
 #include "Commands/GyroTurn.h"
 #include "Commands/Drive.h"
+#include "Commands/MoveUntilWall.h"
 
-OI::OI() :leftStick(new Joystick(0)), rightStick(new Joystick(1)),
-			gyroTurn(new JoystickButton(leftStick, 1)),
-			drive(new JoystickButton(rightStick, 1)){
-	// Process operator interface input here.
-	gyroTurn->WhenPressed(new GyroTurn(90, false));
-	drive->WhenPressed(new Drive(0.5, 0.5, 0.5));
+OI::OI() :leftStick(new Joystick(0)), rightStick(new Joystick(1)), ArmStick(new Joystick(2)){
+	// Process operator interface input here
 }
 
 Joystick* OI::getLeft() {

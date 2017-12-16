@@ -8,8 +8,7 @@ private:
 	double targetDistance;
 	double leftDistance;
 	double rightDistance;
-	double leftEncoder;
-	double rightEncoder;
+	double angle;
 public:
 	MoveUntilWall(double _distance);
 	void Initialize();

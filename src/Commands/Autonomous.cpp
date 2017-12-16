@@ -1,6 +1,6 @@
 #include "Autonomous.h"
 
-Autonomous::Autonomous() {
+Autonomous::Autonomous() : HZone("unknown"), position("A"){
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
@@ -17,43 +17,36 @@ Autonomous::Autonomous() {
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
-	AddSequential(new MoveUntilWall(12)); //change target distance
-<<<<<<< HEAD
-	AddSequential(new Drive(-0.5, 0.5, 1)); //turn to face left wall
-	AddSequential(new AlignWithWall());
-	/*
-	if (orientation != "v") {
-=======
-	//AddSequential(new Drive(-0.5, 0.5, 1)); //turn to face left wall
-	//AddSequential(new AlignWithWall());
+	AddSequential(new MoveUntilWall(6)); //change target distance
 	if (NetworkTablesInterface::Orientation() != "V") {
 		if (NetworkTablesInterface::Orientation() == "H") {
 			HZone = "A";
 		}
-		AddSequential(new Drive(-0.5, 0.5, 1));
+		AddSequential(new Drive(-0.5, 0.5));
 		AddSequential(new AlignWithWall());
->>>>>>> 519c26f6f774607e08e3c5b87fd1f8dc16898650
-		AddSequential(new MoveFromWall(42)); //3'6" zone
+		AddSequential(new Drive(-0.5, -0.5));
+		AddSequential(new Drive(0.5, -0.5));
+		AddSequential(new AlignWithWall());
 		if (NetworkTablesInterface::Orientation() != "V") {
-			AddSequential(new MoveFromWall(84));
-			//turn
+			if (NetworkTablesInterface::Orientation() == "H") {
+				HZone = "B";
+			}
 			//hit target
 		} else {
-			//turn
+			AddSequential(new GyroTurn(90, false));
+			AddSequential(new Drive(0.5, 0.5));
+			AddSequential(new Drive(-0.5, 0.5));
+			AddSequential(new AlignWithWall());
 			//hit target
 		}
 	} else {
-		//turn
 		//hit target
 	}
-	*/
-	//return to zone A
-	//turn back
 	/*
 	AddSequential(new MoveUntilWall(12)); //change target distance
-	if (orientation != "s") {
+	if (NetworkTablesInterface::Orientation() != "s") {
 		AddSequential(new MoveFromWall(42));
-		if (orientation != "s") {
+		if (NetworkTablesInterface:Orientation != "s") {
 			AddSequential(new MoveFromWall(84));
 		}
 	}

@@ -18,8 +18,6 @@ void TankDrive::Execute() {
 	driveTrain->tankDrive(leftVal, rightVal);
 	std::cout << "LeftUltrasonic: " << driveTrain->leftUltra() << std::endl;
 	std::cout << "RightUltrasonic: " << driveTrain->rightUltra() << std::endl;
-	std::cout << "LeftEncoder: " << driveTrain->leftEncoder() << std::endl;
-	std::cout << "RightEncoder: " << driveTrain->rightEncoder() << std::endl;
 	std::cout << "GyroAngle: " << driveTrain->GyroAngle() << std::endl;
 	std::cout << "GyroRate: " << driveTrain->GyroRate() << std::endl;
 }

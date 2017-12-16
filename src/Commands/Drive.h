@@ -5,9 +5,9 @@
 
 class Drive : public CommandBase {
 private:
-	double left, right, time;
+	double left, right;
 public:
-	Drive(double _left, double _right, double _time);
+	Drive(double _left, double _right);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
