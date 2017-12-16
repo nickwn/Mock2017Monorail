@@ -3,8 +3,8 @@
 #include "Commands/MoveArm.h"
 #include "OI.h"
 
-Arm::Arm() : Subsystem("Arm"), armMotor(new CANTalon(ARMMOTOR)) {
-
+Arm::Arm() : Subsystem("Arm"), armMotor(new CANTalon(ARMMOTOR)), encoder(new Encoder(0, 1)) {
+	encoder->Reset();
 }
 
 void Arm::InitDefaultCommand() {
@@ -26,3 +26,6 @@ void Arm::End()
 	armMotor->Set(0);
 }
 
+double Arm::EncoderPosition() {
+	return encoder->GetDistance();
+}
