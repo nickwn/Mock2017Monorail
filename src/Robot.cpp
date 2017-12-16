@@ -20,6 +20,7 @@ public:
 		// chooser.AddObject("My Auto", new MyAutoCommand());
 		frc::SmartDashboard::PutData("Auto Modes", &chooser);
 		chooser.AddObject("Autonomous", new Autonomous());
+		chooser.AddObject("SimpleAuto", new SimpleAuto());
 	}
 
 	/**

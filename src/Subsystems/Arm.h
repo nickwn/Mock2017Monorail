@@ -11,11 +11,13 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 	CANTalon* armMotor;
-	Encoder* encoder;
+	AnalogInput* encoder;
+	DigitalInput* upperLim;
+	DigitalInput* lowerLim;
 public:
 	Arm();
 	void InitDefaultCommand();
-	void armD(double armDistance);
+	void SetPosition(double deg);
 	void End();
 	double EncoderPosition();
 };
