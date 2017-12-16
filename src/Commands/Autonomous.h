@@ -9,12 +9,14 @@
 #include "Drive.h"
 #include "AlignWithWall.h"
 #include "MoveFromWall.h"
+#include "GyroTurn.h"
 
 #include "Utilities/NetworkTablesInterface.h"
 
 class Autonomous : public CommandGroup {
 private:
 	std::string HZone;
+	std::string position;
 public:
 	Autonomous();
 };
